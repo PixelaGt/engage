@@ -1,3 +1,4 @@
+import 'package:engage/src/data/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -6,7 +7,15 @@ class AuthService {
   final GoogleSignIn _googleSignIn = GoogleSignIn(
       scopes: ['email', 'https://www.googleapis.com/auth/contacts.readonly']);
 
+  Profile _currentProfile;
+
   Future<FirebaseUser> currentUser() async => await _firebaseAuth.currentUser();
+
+  Profile get profile => _currentProfile;
+
+  void updateProfile(Profile profile) {
+    _currentProfile = profile;
+  }
 
   Future<bool> isUserLoggedIn() async {
     var user = await _firebaseAuth.currentUser();

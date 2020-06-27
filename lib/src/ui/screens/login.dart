@@ -1,4 +1,6 @@
+import 'package:engage/src/data/profile.dart';
 import 'package:engage/src/ui/screens/home.dart';
+import 'package:engage/src/ui/screens/register.dart';
 import 'package:engage/src/utils/extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -33,12 +35,27 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _google() async {
-    final user = await context.auth.loginWithGoogle();
-    if (user != null) context.navigator.navigateTo(HomeScreen());
+    try {
+      final user = await context.auth.loginWithGoogle();
+      if (user != null) {
+        final profile = await context.profile(user.uid);
+        if (profile != null) {
+          context.updateProfile(profile);
+          context.navigate(HomeScreen());
+        } else {
+          context.navigate(RegisterScreen(user.uid));
+        }
+      }
+    } catch (e) {}
   }
 
   void _anonymous() async {
-    final user = await context.auth.loginAnonymously();
-    if (user != null) context.navigator.navigateTo(HomeScreen());
+    try {
+      final user = await context.auth.loginAnonymously();
+      if (user != null) {
+        context.updateProfile(random());
+        context.navigate(HomeScreen());
+      }
+    } catch (e) {}
   }
 }

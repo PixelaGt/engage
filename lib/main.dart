@@ -1,3 +1,4 @@
+import 'package:engage/src/services/firestore.dart';
 import 'package:engage/src/services/navigation.dart';
 import 'package:engage/src/services/session.dart';
 import 'package:engage/src/ui/screens/splash.dart';
@@ -15,8 +16,17 @@ class EngageApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider(create: (context) => AuthService()),
-        Provider(create: (context) => _navigationService),
+        Provider(
+          create: (context) => AuthService(),
+          lazy: true,
+        ),
+        Provider(
+          create: (context) => _navigationService,
+        ),
+        Provider(
+          create: (context) => FirestoreService(),
+          lazy: true,
+        )
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
