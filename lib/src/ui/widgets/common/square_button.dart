@@ -6,20 +6,16 @@ class SquareButton extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Container(
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {},
+        child: Container(
           height: 43.0,
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           decoration: BoxDecoration(
             border: Border.all(width: 1.0, color: const Color(0xff00e3ee)),
-            boxShadow: [
-              BoxShadow(
-                color: const Color(0x4f00e3ee),
-                offset: Offset(0, 0),
-                blurRadius: 12,
-              ),
-            ],
+            boxShadow: [],
           ),
           child: Center(
             child: Text(
@@ -34,7 +30,7 @@ class SquareButton extends StatelessWidget {
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }

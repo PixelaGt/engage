@@ -1,8 +1,9 @@
 import 'package:engage/src/data/profile.dart';
 import 'package:engage/src/ui/screens/home.dart';
 import 'package:engage/src/ui/screens/register.dart';
-import 'package:engage/src/ui/widgets/common/cyber_decoration.dart';
+import 'package:engage/src/ui/widgets/login/login_base.dart';
 import 'package:engage/src/ui/widgets/login/login_form.dart';
+import 'package:engage/src/ui/widgets/login/login_header.dart';
 import 'package:engage/src/utils/extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -17,29 +18,19 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: LoginForm(),
+      body: LoginBase(
+        [
+          Column(
+            children: [
+              Expanded(
+                child: LoginHeader(),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: LoginForm(_anonymous, _google),
+              )
+            ],
           )
-          // CyberDecoration(),
-          // Center(
-          //   child: Column(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     crossAxisAlignment: CrossAxisAlignment.center,
-          //     children: [
-          //       RaisedButton(
-          //         child: const Text('ANNONYMUS SIGN IN'),
-          //         onPressed: _anonymous,
-          //       ),
-          //       RaisedButton(
-          //         child: const Text('GOOGLE SIGN IN'),
-          //         onPressed: _google,
-          //       ),
-          //     ],
-          //   ),
-          // ),
         ],
       ),
     );

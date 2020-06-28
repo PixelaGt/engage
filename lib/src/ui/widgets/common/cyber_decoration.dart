@@ -10,7 +10,6 @@ class CyberDecoration extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: context.width,
-      height: 150.0,
       child: WebsafeSvg.string(
         svg,
         fit: BoxFit.contain,
