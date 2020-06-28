@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Column(
             children: [
               Expanded(
-                child: LoginHeader(),
+                child: LoginHeader(_anonymous),
               ),
               Align(
                 alignment: Alignment.bottomCenter,
