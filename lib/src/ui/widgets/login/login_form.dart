@@ -1,6 +1,7 @@
 import 'package:engage/src/ui/widgets/common/cyber_button.dart';
 import 'package:engage/src/ui/widgets/common/cyber_decoration.dart';
 import 'package:engage/src/ui/widgets/common/square_icon_button.dart';
+import 'package:engage/src/utils/extensions.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatelessWidget {
@@ -12,7 +13,12 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CyberDecoration(),
+        Container(
+          width: context.width,
+          // height: 175.0,
+          child: CyberDecoration(),
+          // color: Colors.yellow,
+        ),
         Positioned.fill(
             child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32.0),
