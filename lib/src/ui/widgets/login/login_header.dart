@@ -8,14 +8,20 @@ class LoginHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text('Hola'),
-        SizedBox(height: 16.0),
-        CyberPanel(),
-      ],
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 16.0),
+            Expanded(
+              child: CyberPanel('all hail x aedt 32!'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

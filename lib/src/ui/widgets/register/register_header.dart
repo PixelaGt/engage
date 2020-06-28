@@ -14,7 +14,7 @@ class RegisterHeader extends StatelessWidget {
         children: [
           Text('Hola'),
           SizedBox(height: 16.0),
-          CyberPanel(),
+          CyberPanel('all hail x aedt 32!'),
         ],
       ),
     );
