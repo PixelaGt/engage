@@ -17,6 +17,7 @@ dependencies:
   google_sign_in: ^4.5.1
   json_annotation: ^3.0.1
   provider: ^4.1.3
+  websafe_svg: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -27,3 +28,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Bios
+      fonts:
+        - asset: assets/fonts/Bios_Bold.otf
+        - asset: assets/fonts/Bios_Regular.otf
+    - family: Avalon
+      fonts:
+        - asset: assets/fonts/Avalon.otf

@@ -16,3 +16,8 @@ extension ServicesExtension on BuildContext {
       this.navigator.navigateTo(child, replace: replace);
   void updateProfile(Profile profile) => this.auth.updateProfile(profile);
 }
+
+extension ScreenExtension on BuildContext {
+  double get height => MediaQuery.of(this).size.height;
+  double get width => MediaQuery.of(this).size.width;
+}
