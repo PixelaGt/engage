@@ -9,43 +9,46 @@ class CyberInitiative extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CyberContainer(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              initiative.name,
-              style: TextStyle(
-                fontFamily: 'Bios',
-                fontSize: 18,
-                color: const Color(0xff00e3ee),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16.0),
+      child: CyberContainer(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                initiative.name,
+                style: TextStyle(
+                  fontFamily: 'Bios',
+                  fontSize: 18,
+                  color: const Color(0xff00e3ee),
+                ),
               ),
-            ),
-            SizedBox(height: 4.0),
-            Text(
-              initiative.description,
-              style: TextStyle(
-                fontFamily: 'Bios',
-                fontSize: 14,
-                color: const Color(0xff00e3ee),
+              SizedBox(height: 4.0),
+              Text(
+                initiative.description,
+                style: TextStyle(
+                  fontFamily: 'Bios',
+                  fontSize: 14,
+                  color: const Color(0xff00e3ee),
+                ),
               ),
-            ),
-            SizedBox(height: 4.0),
-            Text(
-              '${initiative.support.toString()}/${initiative.goal.toString()} units',
-              style: TextStyle(
-                fontFamily: 'Bios',
-                fontSize: 12,
-                color: const Color(0xff00e3ee),
+              SizedBox(height: 4.0),
+              Text(
+                '${initiative.support.toString()}/${initiative.goal.toString()} units',
+                style: TextStyle(
+                  fontFamily: 'Bios',
+                  fontSize: 12,
+                  color: const Color(0xff00e3ee),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
+        onPressed: () {},
+        withDecoration: true,
       ),
-      onPressed: () {},
-      withDecoration: true,
     );
   }
 }
