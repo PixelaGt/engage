@@ -2,6 +2,7 @@ import 'package:engage/src/services/firestore.dart';
 import 'package:engage/src/ui/widgets/common/cyber_initiative.dart';
 import 'package:engage/src/ui/widgets/common/cyber_panel.dart';
 import 'package:engage/src/ui/widgets/home/home_base.dart';
+import 'package:engage/src/ui/widgets/home/home_header.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,11 +19,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: HomeBase(
         [
-          // Align(alignment: Alignment.topCenter, child: Text('Hola'))
           ListView(
             padding:
                 const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
             children: [
+              HomeHeader(),
               Text(
                 'Now, you are know as:',
                 style: TextStyle(
