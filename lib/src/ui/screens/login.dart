@@ -25,7 +25,9 @@ class _LoginScreenState extends State<LoginScreen> {
               Expanded(
                 child: LoginHeader(_anonymous),
               ),
-              Expanded(child: LoginForm(_anonymous, _google))
+              Expanded(
+                child: LoginForm(_anonymous, _google),
+              )
             ],
           )
         ],
