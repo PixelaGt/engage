@@ -10,43 +10,45 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        CyberDecoration(),
-        Positioned.fill(
-            child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Welcome',
-                  style: TextStyle(
-                    fontFamily: 'Bios',
-                    fontSize: 32,
-                    color: const Color(0xff00e3ee),
-                    fontWeight: FontWeight.normal,
-                  )),
-              SizedBox(height: 16.0),
-              Text('300 intiatives created, support your people.',
-                  style: TextStyle(
-                    fontFamily: 'Bios',
-                    fontSize: 14,
-                    color: const Color(0xff00e3ee),
-                    fontWeight: FontWeight.normal,
-                  )),
-              SizedBox(height: 16.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CyberButton('Anonymous', onAnonymous),
-                  SquareIconButton(onGoogle)
-                ],
-              ),
-            ],
-          ),
-        ))
-      ],
+    return Container(
+      child: Stack(
+        children: [
+          CyberDecoration(),
+          Positioned.fill(
+              child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Welcome',
+                    style: TextStyle(
+                      fontFamily: 'Bios',
+                      fontSize: 32,
+                      color: const Color(0xff00e3ee),
+                      fontWeight: FontWeight.normal,
+                    )),
+                SizedBox(height: 16.0),
+                Text('300 intiatives created, support your people.',
+                    style: TextStyle(
+                      fontFamily: 'Bios',
+                      fontSize: 14,
+                      color: const Color(0xff00e3ee),
+                      fontWeight: FontWeight.normal,
+                    )),
+                SizedBox(height: 16.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CyberButton('Anonymous', onAnonymous),
+                    SquareIconButton(onGoogle)
+                  ],
+                ),
+              ],
+            ),
+          ))
+        ],
+      ),
     );
   }
 }

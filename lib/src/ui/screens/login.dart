@@ -25,8 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Expanded(
                 child: LoginHeader(_anonymous),
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
+              Expanded(
                 child: LoginForm(_anonymous, _google),
               )
             ],
