@@ -3,9 +3,11 @@ import 'package:engage/src/ui/widgets/common/cyber_container.dart';
 import 'package:flutter/material.dart';
 
 class CyberInitiative extends StatelessWidget {
+  final Function(Initiative) onPressed;
   final Initiative initiative;
 
-  const CyberInitiative(this.initiative, {Key key}) : super(key: key);
+  const CyberInitiative(this.initiative, {this.onPressed, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class CyberInitiative extends StatelessWidget {
             ],
           ),
         ),
-        onPressed: () {},
+        onPressed: onPressed != null ? () => onPressed(initiative) : null,
         withDecoration: true,
       ),
     );

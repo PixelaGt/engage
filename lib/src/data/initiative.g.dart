@@ -10,6 +10,8 @@ part of 'initiative.dart';
 
 _$_Initiative _$_$_InitiativeFromJson(Map<String, dynamic> json) {
   return _$_Initiative(
+    supporters:
+        (json['supporters'] as List)?.map((e) => e as String)?.toList() ?? [],
     description: json['description'] as String,
     name: json['name'] as String,
     goal: json['goal'] as int,
@@ -20,6 +22,7 @@ _$_Initiative _$_$_InitiativeFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_InitiativeToJson(_$_Initiative instance) =>
     <String, dynamic>{
+      'supporters': instance.supporters,
       'description': instance.description,
       'name': instance.name,
       'goal': instance.goal,

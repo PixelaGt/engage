@@ -63,12 +63,15 @@ class FirestoreService {
     }
   }
 
-  Stream<List<Initiative>> initiativesStream() => _initiativesCollection
-      .snapshots()
-      .map((result) => result.documents.map((e) {
-            print(e.data.toString());
-            return Initiative.fromJson(e.data);
-          }).toList());
+  Stream<List<Initiative>> supportedInitiatives(String id) =>
+      _initiativesCollection.snapshots().map((snapshot) => snapshot.documents
+          .map((e) => Initiative.fromJson(e.data))
+          .where((element) => element.supporters.contains(id))
+          .toList());
+
+  Stream<List<Initiative>> initiativesStream() =>
+      _initiativesCollection.snapshots().map((result) =>
+          result.documents.map((e) => Initiative.fromJson(e.data)).toList());
 
   Stream<Profile> profileStream(String id) => _profilesCollection
       .document(id)
