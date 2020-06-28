@@ -14,6 +14,7 @@ _$_Initiative _$_$_InitiativeFromJson(Map<String, dynamic> json) {
     name: json['name'] as String,
     goal: json['goal'] as int,
     support: json['support'] as int,
+    id: json['id'] as String,
   );
 }
 
@@ -23,4 +24,5 @@ Map<String, dynamic> _$_$_InitiativeToJson(_$_Initiative instance) =>
       'name': instance.name,
       'goal': instance.goal,
       'support': instance.support,
+      'id': instance.id,
     };

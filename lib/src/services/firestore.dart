@@ -11,7 +11,10 @@ class FirestoreService {
 
   Future<bool> createInitiative(Initiative initiative) async {
     try {
-      await _initiativesCollection.add(initiative.toJson());
+      final result = await _initiativesCollection.add(initiative.toJson());
+      await _initiativesCollection
+          .document(result.documentID)
+          .setData({'id': result.documentID}, merge: true);
       return true;
     } catch (e) {
       return false;
@@ -46,6 +49,26 @@ class FirestoreService {
       return null;
     }
   }
+
+  Future<bool> supportInitiative(Initiative initiative, int credits) async {
+    try {
+      final updatedInitiative =
+          initiative.copyWith.call(support: initiative.support + credits);
+      await _initiativesCollection
+          .document(initiative.id)
+          .setData(updatedInitiative.toJson(), merge: true);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Stream<List<Initiative>> initiativesStream() => _initiativesCollection
+      .snapshots()
+      .map((result) => result.documents.map((e) {
+            print(e.data.toString());
+            return Initiative.fromJson(e.data);
+          }).toList());
 
   Stream<Profile> profileStream(String id) => _profilesCollection
       .document(id)

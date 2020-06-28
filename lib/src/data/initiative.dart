@@ -10,7 +10,8 @@ abstract class Initiative with _$Initiative {
       {@required String description,
       @required String name,
       @required int goal,
-      @required int support}) = _Initiative;
+      @required int support,
+      String id}) = _Initiative;
 
   factory Initiative.fromJson(Map<String, dynamic> json) =>
       _$InitiativeFromJson(json);
