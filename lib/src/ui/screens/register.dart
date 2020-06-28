@@ -1,10 +1,10 @@
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:engage/src/data/profile.dart';
 import 'package:engage/src/ui/screens/home.dart';
+import 'package:engage/src/ui/widgets/register/register_base.dart';
+import 'package:engage/src/ui/widgets/register/register_form.dart';
+import 'package:engage/src/ui/widgets/register/register_header.dart';
 import 'package:engage/src/utils/extensions.dart';
-import 'package:engage/src/utils/validators.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class RegisterScreen extends StatefulWidget {
   final String uid;
@@ -28,34 +28,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Form(
-        key: _registerForm,
-        child: Column(
-          children: [
-            DateTimeField(
-              format: DateFormat("yyyy-MM-dd"),
-              onChanged: (value) =>
-                  _updateProfile(birthday: value.toIso8601String()),
-              onShowPicker: (context, currentValue) => showDatePicker(
-                context: context,
-                firstDate: DateTime(1900),
-                initialDate: currentValue ?? DateTime.now(),
-                lastDate: DateTime(2077),
-                initialDatePickerMode: DatePickerMode.year,
-              ),
-              validator: birthdayValidator,
-            ),
-            TextFormField(
-              onChanged: (value) => _updateProfile(realName: value),
-              validator: nameValidator,
-            ),
-            TextFormField(
-              onChanged: (value) => _updateProfile(nickname: value),
-              validator: nickValidator,
-            ),
-            RaisedButton(onPressed: _register),
-          ],
-        ),
+      body: RegisterBase(
+        [
+          Column(
+            children: [
+              SafeArea(child: RegisterHeader()),
+              Expanded(
+                child: RegisterForm(_updateProfile, _register, _registerForm),
+              )
+            ],
+          )
+        ],
       ),
     );
   }

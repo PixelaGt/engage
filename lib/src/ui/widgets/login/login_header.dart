@@ -10,10 +10,9 @@ class LoginHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text('Hola'),
-        SizedBox(height: 16.0),
-        RaisedButton(onPressed: onPressed),
         SizedBox(height: 16.0),
         CyberPanel(),
       ],

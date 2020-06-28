@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 
 class SquareButton extends StatelessWidget {
-  SquareButton({
+  final String text;
+  final VoidCallback onPressed;
+
+  SquareButton(
+    this.text,
+    this.onPressed, {
     Key key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {},
+        onTap: onPressed,
         child: Container(
           height: 43.0,
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -19,7 +25,7 @@ class SquareButton extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              'Join now',
+              text,
               style: TextStyle(
                 fontFamily: 'Bios',
                 fontSize: 16,
