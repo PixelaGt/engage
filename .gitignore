@@ -50,3 +50,5 @@ app.*.map.json
 
 #VSCode
 .vscode/
+
+node_modules/
