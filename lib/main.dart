@@ -1,4 +1,5 @@
 import 'package:engage/src/services/firestore.dart';
+import 'package:engage/src/services/loader.dart';
 import 'package:engage/src/services/navigation.dart';
 import 'package:engage/src/services/session.dart';
 import 'package:engage/src/ui/screens/splash.dart';
@@ -26,13 +27,20 @@ class EngageApp extends StatelessWidget {
         Provider(
           create: (context) => FirestoreService(),
           lazy: true,
+        ),
+        Provider(
+          create: (context) => Loader(),
+          lazy: true,
         )
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        title: 'Engage',
         navigatorKey: _navigationService.navKey,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: Color(0xff00e3ee),
+          accentColor: Color(0xffDC31E4),
+          splashColor: Color(0xffDC31E4),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: SplashScreen(),

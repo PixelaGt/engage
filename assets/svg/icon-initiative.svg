@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25.166" height="25.166" viewBox="0 0 25.166 25.166">
+  <defs>
+    <filter id="Path_18" x="0" y="0" width="25.166" height="25.166" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-color="#00e3ee" flood-opacity="0.529"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_20" x="3.738" y="1.396" width="17.588" height="22.562" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur-2"/>
+      <feFlood flood-color="#fff" flood-opacity="0.502"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="icon-initiative" transform="translate(-1019.597 -677.778)">
+    <g transform="matrix(1, 0, 0, 1, 1019.6, 677.78)" filter="url(#Path_18)">
+      <path id="Path_18-2" data-name="Path 18" d="M1041.262,688.323v-7.045H1023.1v18.166h18.166v-7.729" transform="translate(-1019.6 -677.78)" fill="none" stroke="#00e3ee" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 1019.6, 677.78)" filter="url(#Path_20)">
+      <path id="Path_20-2" data-name="Path 20" d="M16.559,16.5,13.5,21.088h4.588l-3.059,4.588" transform="translate(-3.26 -8.41)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

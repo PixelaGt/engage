@@ -10,9 +10,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  animations: ^1.1.1
+  chance: ^1.0.0+1
   cloud_firestore: ^0.13.7
   datetime_picker_formfield: ^1.0.0
   firebase_auth: ^0.16.1
+  flare_flutter: ^2.0.4
+  flutter_spinkit: "^4.1.2"
+  flutter_staggered_animations: ^0.1.2
   freezed_annotation: ^0.11.0
   google_sign_in: ^4.5.1
   json_annotation: ^3.0.1
@@ -23,11 +28,21 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^1.10.0
+  flutter_launcher_icons: ^0.7.5
   freezed: ^0.11.2
   json_serializable: ^3.3.0
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/images/icon.png"
+
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/svg/
+    - assets/flare/
   fonts:
     - family: Bios
       fonts:
