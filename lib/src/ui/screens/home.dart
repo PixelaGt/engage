@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:engage/src/ui/screens/create_initiative.dart';
 import 'package:engage/src/ui/screens/credits.dart';
+import 'package:engage/src/ui/screens/engage.dart';
 import 'package:engage/src/ui/screens/initiatives.dart';
 import 'package:engage/src/ui/widgets/home/home_base.dart';
 import 'package:engage/src/ui/widgets/home/home_navigation.dart';
@@ -67,5 +68,5 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> get screens =>
-      [InitiativesScreen(), CreditsScreen(), Container(color: Colors.cyan)];
+      [InitiativesScreen(), CreditsScreen(), EngageScreen()];
 }

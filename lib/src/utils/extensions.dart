@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:engage/src/data/profile.dart';
 import 'package:engage/src/services/firestore.dart';
+import 'package:engage/src/services/loader.dart';
 import 'package:engage/src/services/navigation.dart';
 import 'package:engage/src/services/session.dart';
 import 'package:flutter/widgets.dart';
@@ -23,4 +24,7 @@ extension ServicesExtension on BuildContext {
 extension ScreenExtension on BuildContext {
   double get height => MediaQuery.of(this).size.height;
   double get width => MediaQuery.of(this).size.width;
+
+  void loading() => Provider.of<Loader>(this, listen: false).showLoader(this);
+  void hideLoading() => Provider.of<Loader>(this, listen: false).hideLoader();
 }

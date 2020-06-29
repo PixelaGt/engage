@@ -103,6 +103,25 @@ class FirestoreService {
     }
   }
 
+  Future<bool> updateInitiativeStatus(
+      Initiative initiative, String status) async {
+    try {
+      await _initiativesCollection.document(initiative.id).setData(
+          initiative.copyWith.call(status: status).toJson(),
+          merge: true);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Stream<List<Initiative>> myInitiatives(String id) => _initiativesCollection
+      .where('ownerId', isEqualTo: id)
+      .where('status', isEqualTo: 'created')
+      .snapshots()
+      .map((snapshots) =>
+          snapshots.documents.map((e) => Initiative.fromJson(e.data)).toList());
+
   Stream<List<Initiative>> supportedInitiatives(
           String id) =>
       _initiativesCollection
@@ -118,9 +137,14 @@ class FirestoreService {
       .map((snapshot) =>
           snapshot.documents.map((e) => Transfer.fromJson(e.data)).toList());
 
-  Stream<List<Initiative>> initiativesStream() =>
-      _initiativesCollection.snapshots().map((result) =>
-          result.documents.map((e) => Initiative.fromJson(e.data)).toList());
+  Stream<List<Initiative>> initiativesStream() => _initiativesCollection
+      .where('status', isEqualTo: 'created')
+      .snapshots()
+      .map((result) => result.documents
+          .map((e) => Initiative.fromJson(e.data))
+          .toList()
+          .where((element) => element.support < element.goal)
+          .toList());
 
   Stream<Profile> profileStream(String id) => _profilesCollection
       .document(id)

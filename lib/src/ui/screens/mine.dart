@@ -116,6 +116,7 @@ class _MineScreenState extends State<MineScreen> {
   }
 
   void _credit() async {
+    context.loading();
     if (_stopwatch.isRunning) _stop();
     final credits = (1500 * (_stopwatch.elapsedMilliseconds / 60000)).round();
     if (credits > 0) {
@@ -124,7 +125,8 @@ class _MineScreenState extends State<MineScreen> {
       final result = await context.store.addCredits(profile, credits);
       if (result) {
         _reset();
-      } else {}
+      }
+      context.hideLoading();
     }
   }
 

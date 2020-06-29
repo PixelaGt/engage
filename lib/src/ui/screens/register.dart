@@ -59,8 +59,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   void _register() async {
+    context.loading();
     if (_registerForm.currentState.validate()) {
       final result = await context.store.createProfile(_currentProfile);
+      context.hideLoading();
       if (result) {
         context.navigate(HomeScreen());
       } else {}

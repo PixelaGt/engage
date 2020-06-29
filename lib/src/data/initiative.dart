@@ -7,7 +7,8 @@ part 'initiative.g.dart';
 @freezed
 abstract class Initiative with _$Initiative {
   const factory Initiative(
-      {@Default(0) int support,
+      {@Default('created') String status,
+      @Default(0) int support,
       @Default([]) List<String> supporters,
       @required String description,
       @required String ownerId,

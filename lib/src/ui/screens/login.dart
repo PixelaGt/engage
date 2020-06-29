@@ -38,27 +38,36 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _google() async {
     try {
+      context.loading();
       final user = await context.auth.loginWithGoogle();
       if (user != null) {
         final profile = await context.profile(user.uid);
         if (profile != null) {
           context.updateProfile(profile);
+          context.hideLoading();
           context.navigate(HomeScreen(), replace: true);
         } else {
+          context.hideLoading();
           context.navigate(RegisterScreen(user.uid),
               replace: true, type: SharedAxisTransitionType.horizontal);
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      context.hideLoading();
+    }
   }
 
   void _anonymous() async {
     try {
+      context.loading();
       final user = await context.auth.loginAnonymously();
       if (user != null) {
         context.updateProfile(random());
+        context.hideLoading();
         context.navigate(HomeScreen(), replace: true);
       }
-    } catch (e) {}
+    } catch (e) {
+      context.hideLoading();
+    }
   }
 }

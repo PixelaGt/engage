@@ -23,119 +23,122 @@ class _SupportInitiativeScreenState extends State<SupportInitiativeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xff020526),
-      body: Stack(
-        children: [
-          WebsafeSvg.asset('assets/svg/header-decoration.svg',
-              fit: BoxFit.fill, height: 80.0),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: AnimationConfiguration.toStaggeredList(
-                  duration: const Duration(milliseconds: 500),
-                  childAnimationBuilder: (widget) => SlideAnimation(
-                    verticalOffset: 100.0,
-                    child: FadeInAnimation(
-                      child: widget,
+    return AnimationLimiter(
+      child: Scaffold(
+        backgroundColor: Color(0xff020526),
+        body: Stack(
+          children: [
+            WebsafeSvg.asset('assets/svg/header-decoration.svg',
+                fit: BoxFit.cover, height: 80.0, width: context.width),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: AnimationConfiguration.toStaggeredList(
+                    duration: const Duration(milliseconds: 500),
+                    childAnimationBuilder: (widget) => SlideAnimation(
+                      verticalOffset: 100.0,
+                      child: FadeInAnimation(
+                        child: widget,
+                      ),
                     ),
-                  ),
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          widget.initiative.name ?? '',
-                          style: TextStyle(
-                            fontFamily: 'Bios',
-                            fontSize: 32,
-                            color: const Color(0xff00e3ee),
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.initiative.name ?? '',
+                            style: TextStyle(
+                              fontFamily: 'Bios',
+                              fontSize: 32,
+                              color: const Color(0xff00e3ee),
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 16.0),
-                        Text(
-                          widget.initiative.description ?? '',
-                          style: TextStyle(
-                            fontFamily: 'Bios',
-                            fontSize: 24,
-                            color: const Color(0xff00e3ee),
+                          SizedBox(height: 16.0),
+                          Text(
+                            widget.initiative.description ?? '',
+                            style: TextStyle(
+                              fontFamily: 'Bios',
+                              fontSize: 24,
+                              color: const Color(0xff00e3ee),
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 16.0),
-                        Text(
-                          '${widget.initiative.support.toString()}/${widget.initiative.goal.toString()} units',
-                          style: TextStyle(
-                            fontFamily: 'Bios',
-                            fontSize: 12,
-                            color: const Color(0xff00e3ee),
-                          ),
-                        ),
-                        SizedBox(height: 16.0),
-                        Text('support this initiative to get to the top',
+                          SizedBox(height: 16.0),
+                          Text(
+                            '${widget.initiative.support.toString()}/${widget.initiative.goal.toString()} units',
                             style: TextStyle(
                               fontFamily: 'Bios',
                               fontSize: 12,
                               color: const Color(0xff00e3ee),
-                            )),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'How much are you adding to this initiative?',
-                          style: TextStyle(
-                            fontFamily: 'Bios',
-                            fontSize: 12,
-                            color: const Color(0xff00e3ee),
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 4.0),
-                        TextFormField(
-                          keyboardType: TextInputType.number,
-                          decoration: cyberFieldDecoration,
-                          style: TextStyle(
-                            color: Color(0xffDC31E4),
-                            fontFamily: 'Bios',
+                          SizedBox(height: 16.0),
+                          Text('support this initiative to get to the top',
+                              style: TextStyle(
+                                fontFamily: 'Bios',
+                                fontSize: 12,
+                                color: const Color(0xff00e3ee),
+                              )),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'How much are you adding to this initiative?',
+                            style: TextStyle(
+                              fontFamily: 'Bios',
+                              fontSize: 12,
+                              color: const Color(0xff00e3ee),
+                            ),
                           ),
-                          onChanged: (value) =>
-                              setState(() => _supportAmount = int.parse(value)),
-                          validator: nameValidator,
-                        ),
-                        SizedBox(height: 8.0),
-                        ProfileBuilder(
-                            builder: (context, profile) => profile == null
-                                ? Container()
-                                : Text(
-                                    'You currently have ${profile.units} credits',
-                                    style: TextStyle(
-                                      fontFamily: 'Bios',
-                                      fontSize: 12,
-                                      color: const Color(0xff00e3ee),
-                                    ),
-                                  ))
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        SquareButton('Support'.toUpperCase(), _support),
-                        SizedBox(height: 8.0),
-                        SquareButton('Back', () => context.navigator.back(),
-                            flat: true)
-                      ],
-                    ),
-                  ],
-                )),
-          )
-        ],
+                          SizedBox(height: 4.0),
+                          TextFormField(
+                            keyboardType: TextInputType.number,
+                            decoration: cyberFieldDecoration,
+                            style: TextStyle(
+                              color: Color(0xffDC31E4),
+                              fontFamily: 'Bios',
+                            ),
+                            onChanged: (value) => setState(
+                                () => _supportAmount = int.parse(value)),
+                            validator: nameValidator,
+                          ),
+                          SizedBox(height: 8.0),
+                          ProfileBuilder(
+                              builder: (context, profile) => profile == null
+                                  ? Container()
+                                  : Text(
+                                      'You currently have ${profile.units} credits',
+                                      style: TextStyle(
+                                        fontFamily: 'Bios',
+                                        fontSize: 12,
+                                        color: const Color(0xff00e3ee),
+                                      ),
+                                    ))
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          SquareButton('Support'.toUpperCase(), _support),
+                          SizedBox(height: 8.0),
+                          SquareButton('Back', () => context.navigator.back(),
+                              flat: true)
+                        ],
+                      ),
+                    ],
+                  )),
+            )
+          ],
+        ),
       ),
     );
   }
 
   void _support() async {
+    context.loading();
     if (_supportAmount != 0) {
       final uid = (await context.auth.currentUser()).uid;
       final profile = await context.store.getProfile(uid);
@@ -143,9 +146,16 @@ class _SupportInitiativeScreenState extends State<SupportInitiativeScreen> {
         final result = await context.store
             .supportInitiative(widget.initiative, _supportAmount, profile);
         if (result) {
+          context.hideLoading();
           context.navigator.back();
-        } else {}
-      } else {}
-    } else {}
+        } else {
+          context.hideLoading();
+        }
+      } else {
+        context.hideLoading();
+      }
+    } else {
+      context.hideLoading();
+    }
   }
 }

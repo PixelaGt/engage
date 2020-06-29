@@ -16,7 +16,8 @@ class _$InitiativeTearOff {
   const _$InitiativeTearOff();
 
   _Initiative call(
-      {int support = 0,
+      {String status = 'created',
+      int support = 0,
       List<String> supporters = const [],
       @required String description,
       @required String ownerId,
@@ -24,6 +25,7 @@ class _$InitiativeTearOff {
       String id,
       String name}) {
     return _Initiative(
+      status: status,
       support: support,
       supporters: supporters,
       description: description,
@@ -39,6 +41,7 @@ class _$InitiativeTearOff {
 const $Initiative = _$InitiativeTearOff();
 
 mixin _$Initiative {
+  String get status;
   int get support;
   List<String> get supporters;
   String get description;
@@ -56,7 +59,8 @@ abstract class $InitiativeCopyWith<$Res> {
           Initiative value, $Res Function(Initiative) then) =
       _$InitiativeCopyWithImpl<$Res>;
   $Res call(
-      {int support,
+      {String status,
+      int support,
       List<String> supporters,
       String description,
       String ownerId,
@@ -74,6 +78,7 @@ class _$InitiativeCopyWithImpl<$Res> implements $InitiativeCopyWith<$Res> {
 
   @override
   $Res call({
+    Object status = freezed,
     Object support = freezed,
     Object supporters = freezed,
     Object description = freezed,
@@ -83,6 +88,7 @@ class _$InitiativeCopyWithImpl<$Res> implements $InitiativeCopyWith<$Res> {
     Object name = freezed,
   }) {
     return _then(_value.copyWith(
+      status: status == freezed ? _value.status : status as String,
       support: support == freezed ? _value.support : support as int,
       supporters: supporters == freezed
           ? _value.supporters
@@ -103,7 +109,8 @@ abstract class _$InitiativeCopyWith<$Res> implements $InitiativeCopyWith<$Res> {
       __$InitiativeCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int support,
+      {String status,
+      int support,
       List<String> supporters,
       String description,
       String ownerId,
@@ -123,6 +130,7 @@ class __$InitiativeCopyWithImpl<$Res> extends _$InitiativeCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object status = freezed,
     Object support = freezed,
     Object supporters = freezed,
     Object description = freezed,
@@ -132,6 +140,7 @@ class __$InitiativeCopyWithImpl<$Res> extends _$InitiativeCopyWithImpl<$Res>
     Object name = freezed,
   }) {
     return _then(_Initiative(
+      status: status == freezed ? _value.status : status as String,
       support: support == freezed ? _value.support : support as int,
       supporters: supporters == freezed
           ? _value.supporters
@@ -149,14 +158,16 @@ class __$InitiativeCopyWithImpl<$Res> extends _$InitiativeCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Initiative with DiagnosticableTreeMixin implements _Initiative {
   const _$_Initiative(
-      {this.support = 0,
+      {this.status = 'created',
+      this.support = 0,
       this.supporters = const [],
       @required this.description,
       @required this.ownerId,
       @required this.goal,
       this.id,
       this.name})
-      : assert(support != null),
+      : assert(status != null),
+        assert(support != null),
         assert(supporters != null),
         assert(description != null),
         assert(ownerId != null),
@@ -165,6 +176,9 @@ class _$_Initiative with DiagnosticableTreeMixin implements _Initiative {
   factory _$_Initiative.fromJson(Map<String, dynamic> json) =>
       _$_$_InitiativeFromJson(json);
 
+  @JsonKey(defaultValue: 'created')
+  @override
+  final String status;
   @JsonKey(defaultValue: 0)
   @override
   final int support;
@@ -184,7 +198,7 @@ class _$_Initiative with DiagnosticableTreeMixin implements _Initiative {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Initiative(support: $support, supporters: $supporters, description: $description, ownerId: $ownerId, goal: $goal, id: $id, name: $name)';
+    return 'Initiative(status: $status, support: $support, supporters: $supporters, description: $description, ownerId: $ownerId, goal: $goal, id: $id, name: $name)';
   }
 
   @override
@@ -192,6 +206,7 @@ class _$_Initiative with DiagnosticableTreeMixin implements _Initiative {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Initiative'))
+      ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('support', support))
       ..add(DiagnosticsProperty('supporters', supporters))
       ..add(DiagnosticsProperty('description', description))
@@ -205,6 +220,8 @@ class _$_Initiative with DiagnosticableTreeMixin implements _Initiative {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Initiative &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.support, support) ||
                 const DeepCollectionEquality()
                     .equals(other.support, support)) &&
@@ -228,6 +245,7 @@ class _$_Initiative with DiagnosticableTreeMixin implements _Initiative {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(support) ^
       const DeepCollectionEquality().hash(supporters) ^
       const DeepCollectionEquality().hash(description) ^
@@ -248,7 +266,8 @@ class _$_Initiative with DiagnosticableTreeMixin implements _Initiative {
 
 abstract class _Initiative implements Initiative {
   const factory _Initiative(
-      {int support,
+      {String status,
+      int support,
       List<String> supporters,
       @required String description,
       @required String ownerId,
@@ -259,6 +278,8 @@ abstract class _Initiative implements Initiative {
   factory _Initiative.fromJson(Map<String, dynamic> json) =
       _$_Initiative.fromJson;
 
+  @override
+  String get status;
   @override
   int get support;
   @override

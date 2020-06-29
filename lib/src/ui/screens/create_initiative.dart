@@ -1,5 +1,4 @@
 import 'package:engage/src/data/initiative.dart';
-import 'package:engage/src/ui/widgets/common/cyber_decoration.dart';
 import 'package:engage/src/ui/widgets/common/cyber_things.dart';
 import 'package:engage/src/ui/widgets/common/square_button.dart';
 import 'package:engage/src/ui/widgets/home/home_base.dart';
@@ -33,7 +32,7 @@ class _CreateInitiativeScreenState extends State<CreateInitiativeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               WebsafeSvg.asset('assets/svg/header-decoration.svg',
-                  fit: BoxFit.fill, height: 80.0),
+                  fit: BoxFit.cover, height: 80.0, width: context.width),
               SizedBox(height: 24.0),
               Padding(
                 padding: const EdgeInsets.only(left: 32.0),
@@ -44,7 +43,7 @@ class _CreateInitiativeScreenState extends State<CreateInitiativeScreen> {
                   child: Container(
                 child: Stack(
                   children: [
-                    CyberDecoration(),
+                    // CyberDecoration(),
                     Positioned.fill(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 32.0),
@@ -143,6 +142,7 @@ class _CreateInitiativeScreenState extends State<CreateInitiativeScreen> {
   }
 
   void _createInitiative() async {
+    context.loading();
     if (_formKey.currentState.validate()) {
       final profile = await context.store
           .getProfile((await context.auth.currentUser()).uid);
@@ -155,8 +155,12 @@ class _CreateInitiativeScreenState extends State<CreateInitiativeScreen> {
             await context.store.createInitiative(initiative, profile);
         if (result) {
           context.navigator.back();
-        } else {}
-      } else {}
+        } else {
+          context.hideLoading();
+        }
+      } else {
+        context.hideLoading();
+      }
     }
   }
 }

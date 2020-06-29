@@ -25,16 +25,19 @@ class CyberButton extends StatelessWidget {
         onTap: onPressed,
         child: Container(
           height: 43.0,
-          child: Center(
-            child: Text(
-              text,
-              style: TextStyle(
-                fontFamily: 'Bios',
-                fontSize: 12,
-                color: const Color(0xff00e3ee),
-                fontWeight: FontWeight.w700,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Center(
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontFamily: 'Bios',
+                  fontSize: 12,
+                  color: const Color(0xff00e3ee),
+                  fontWeight: FontWeight.w700,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
           ),
         ),
