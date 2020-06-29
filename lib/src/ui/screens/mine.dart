@@ -5,6 +5,7 @@ import 'package:engage/src/ui/widgets/common/square_button.dart';
 import 'package:engage/src/ui/widgets/home/home_base.dart';
 import 'package:engage/src/utils/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 class MineScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _MineScreenState extends State<MineScreen> {
   @override
   void dispose() {
     if (_stopwatch.isRunning) _stopwatch.stop();
-    if (_timer.isActive) _timer.cancel();
+    if (_timer != null && _timer.isActive) _timer.cancel();
     super.dispose();
   }
 
@@ -35,69 +36,79 @@ class _MineScreenState extends State<MineScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return HomeBase([
-      Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Column(
-          children: [
-            WebsafeSvg.asset('assets/svg/header-decoration.svg',
-                fit: BoxFit.fill, width: context.width),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Center(
-                  child: CyberContainer(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 128.0),
-                        child: Column(
-                          children: [
-                            Text('Elapsed time',
-                                style: TextStyle(
-                                  fontFamily: 'Bios',
-                                  fontSize: 16,
-                                  color: const Color(0xff00e3ee),
-                                )),
-                            Text(timerText,
-                                style: TextStyle(
-                                  fontFamily: 'Bios',
-                                  fontSize: 48,
-                                  color: const Color(0xff00e3ee),
-                                )),
-                            SizedBox(height: 64.0),
-                            Text('Credits in this session',
-                                style: TextStyle(
-                                  fontFamily: 'Bios',
-                                  fontSize: 16,
-                                  color: const Color(0xff00e3ee),
-                                )),
-                            Text(
-                                '${(1500 * (_stopwatch.elapsedMilliseconds / 60000)).toStringAsFixed(0)}',
-                                style: TextStyle(
-                                  fontFamily: 'Bios',
-                                  fontSize: 48,
-                                  color: const Color(0xff00e3ee),
-                                )),
-                            SizedBox(height: 64.0),
-                            SquareButton(
-                              _stopwatch.isRunning ? 'Stop' : 'Start',
-                              _stopwatch.isRunning
-                                  ? () => _stop()
-                                  : () => _start(),
-                            ),
-                            SizedBox(height: 16.0),
-                            CyberButton('Transfer', _credit)
-                          ],
+    return AnimationLimiter(
+      child: HomeBase([
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Column(
+            children: [
+              WebsafeSvg.asset('assets/svg/header-decoration.svg',
+                  fit: BoxFit.fill, width: context.width),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Center(
+                    child: CyberContainer(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 128.0),
+                          child: Column(
+                              children: AnimationConfiguration.toStaggeredList(
+                                  duration: const Duration(milliseconds: 500),
+                                  childAnimationBuilder: (widget) =>
+                                      SlideAnimation(
+                                        verticalOffset: 100.0,
+                                        child: FadeInAnimation(
+                                          child: widget,
+                                        ),
+                                      ),
+                                  children: [
+                                Text('Elapsed time',
+                                    style: TextStyle(
+                                      fontFamily: 'Bios',
+                                      fontSize: 16,
+                                      color: const Color(0xff00e3ee),
+                                    )),
+                                Text(timerText,
+                                    style: TextStyle(
+                                      fontFamily: 'Bios',
+                                      fontSize: 48,
+                                      color: const Color(0xff00e3ee),
+                                    )),
+                                SizedBox(height: 64.0),
+                                Text('Credits in this session',
+                                    style: TextStyle(
+                                      fontFamily: 'Bios',
+                                      fontSize: 16,
+                                      color: const Color(0xff00e3ee),
+                                    )),
+                                Text(
+                                    '${(1500 * (_stopwatch.elapsedMilliseconds / 60000)).toStringAsFixed(0)}',
+                                    style: TextStyle(
+                                      fontFamily: 'Bios',
+                                      fontSize: 48,
+                                      color: const Color(0xff00e3ee),
+                                    )),
+                                SizedBox(height: 64.0),
+                                SquareButton(
+                                  _stopwatch.isRunning ? 'Stop' : 'Start',
+                                  _stopwatch.isRunning
+                                      ? () => _stop()
+                                      : () => _start(),
+                                ),
+                                SizedBox(height: 16.0),
+                                CyberButton('Transfer', _credit)
+                              ])),
                         ),
-                      ),
-                      onPressed: null),
+                        onPressed: null),
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-      )
-    ]);
+            ],
+          ),
+        )
+      ]),
+    );
   }
 
   void _credit() async {

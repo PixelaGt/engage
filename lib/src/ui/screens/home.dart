@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:engage/src/ui/screens/create_initiative.dart';
 import 'package:engage/src/ui/screens/credits.dart';
 import 'package:engage/src/ui/screens/initiatives.dart';
@@ -42,7 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
               () => changePage(2), () => changePage(0), _currentPage),
           floatingActionButton: _currentPage == 0
               ? FloatingActionButton(
-                  onPressed: () => context.navigate(CreateInitiativeScreen()),
+                  onPressed: () => context.navigate(CreateInitiativeScreen(),
+                      type: SharedAxisTransitionType.vertical),
                   mini: true,
                   child: WebsafeSvg.asset('assets/svg/icon-plus.svg',
                       height: 18.0, width: 18.0),

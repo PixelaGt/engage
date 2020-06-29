@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:animations/animations.dart';
 import 'package:engage/src/ui/screens/home.dart';
 import 'package:engage/src/ui/screens/login.dart';
 import 'package:engage/src/ui/widgets/home/home_base.dart';
@@ -51,9 +52,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void _setup() async {
     Timer(Duration(seconds: 2), () async {
       if (await context.auth.isUserLoggedIn()) {
-        context.navigator.navigateTo(HomeScreen());
+        context.navigator.navigateTo(HomeScreen(), replace: true);
       } else {
-        context.navigator.navigateTo(LoginScreen());
+        context.navigator.navigateTo(LoginScreen(),
+            replace: true, type: SharedAxisTransitionType.horizontal);
       }
     });
   }

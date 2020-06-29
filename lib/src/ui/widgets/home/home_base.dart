@@ -37,7 +37,7 @@ class HomeBase extends StatelessWidget {
           child: WebsafeSvg.asset('assets/svg/bg-decoration.svg',
               width: context.width),
         ),
-        ...children
+        ...children,
       ],
     );
   }

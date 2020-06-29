@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:engage/src/data/profile.dart';
 import 'package:engage/src/services/firestore.dart';
 import 'package:engage/src/services/navigation.dart';
@@ -12,8 +13,10 @@ extension ServicesExtension on BuildContext {
 
   ///Utilities
   Future<Profile> profile(String id) => this.store.getProfile(id);
-  Future<dynamic> navigate(Widget child, {bool replace = false}) =>
-      this.navigator.navigateTo(child, replace: replace);
+  Future<dynamic> navigate(Widget child,
+          {bool replace = false,
+          SharedAxisTransitionType type = SharedAxisTransitionType.scaled}) =>
+      this.navigator.navigateTo(child, replace: replace, type: type);
   void updateProfile(Profile profile) => this.auth.updateProfile(profile);
 }
 

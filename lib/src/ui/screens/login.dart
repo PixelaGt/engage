@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:engage/src/data/profile.dart';
 import 'package:engage/src/ui/screens/home.dart';
 import 'package:engage/src/ui/screens/register.dart';
@@ -42,9 +43,10 @@ class _LoginScreenState extends State<LoginScreen> {
         final profile = await context.profile(user.uid);
         if (profile != null) {
           context.updateProfile(profile);
-          context.navigate(HomeScreen());
+          context.navigate(HomeScreen(), replace: true);
         } else {
-          context.navigate(RegisterScreen(user.uid));
+          context.navigate(RegisterScreen(user.uid),
+              replace: true, type: SharedAxisTransitionType.horizontal);
         }
       }
     } catch (e) {}
@@ -55,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
       final user = await context.auth.loginAnonymously();
       if (user != null) {
         context.updateProfile(random());
-        context.navigate(HomeScreen());
+        context.navigate(HomeScreen(), replace: true);
       }
     } catch (e) {}
   }
