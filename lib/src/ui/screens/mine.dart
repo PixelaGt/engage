@@ -45,24 +45,26 @@ class _MineScreenState extends State<MineScreen> {
               WebsafeSvg.asset('assets/svg/header-decoration.svg',
                   fit: BoxFit.fill, width: context.width),
               Expanded(
+                  child: Container(
+                margin: const EdgeInsets.symmetric(
+                    horizontal: 24.0, vertical: 16.0),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Center(
-                    child: CyberContainer(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16.0, vertical: 128.0),
-                          child: Column(
-                              children: AnimationConfiguration.toStaggeredList(
-                                  duration: const Duration(milliseconds: 500),
-                                  childAnimationBuilder: (widget) =>
-                                      SlideAnimation(
-                                        verticalOffset: 100.0,
-                                        child: FadeInAnimation(
-                                          child: widget,
-                                        ),
-                                      ),
-                                  children: [
+                  child: CyberContainer(
+                    onPressed: null,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: AnimationConfiguration.toStaggeredList(
+                              duration: const Duration(milliseconds: 500),
+                              childAnimationBuilder: (widget) => SlideAnimation(
+                                    verticalOffset: 100.0,
+                                    child: FadeInAnimation(
+                                      child: widget,
+                                    ),
+                                  ),
+                              children: [
                                 Text('Elapsed time',
                                     style: TextStyle(
                                       fontFamily: 'Bios',
@@ -103,11 +105,76 @@ class _MineScreenState extends State<MineScreen> {
                                     'Back', () => context.navigator.back(),
                                     flat: true)
                               ])),
-                        ),
-                        onPressed: null),
+                    ),
                   ),
                 ),
-              ),
+              ))
+
+              // Expanded(
+              //   child: Padding(
+              //     padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              //     child: Center(
+              //       child: CyberContainer(
+              //           child: Padding(
+              //             padding: EdgeInsets.symmetric(
+              //                 horizontal: 16.0,
+              //                 vertical: (context.width / 2) * 0.15),
+              //             child: Column(
+              //                 children: AnimationConfiguration.toStaggeredList(
+              //                     duration: const Duration(milliseconds: 500),
+              //                     childAnimationBuilder: (widget) =>
+              //                         SlideAnimation(
+              //                           verticalOffset: 100.0,
+              //                           child: FadeInAnimation(
+              //                             child: widget,
+              //                           ),
+              //                         ),
+              //                     children: [
+              //                   Text('Elapsed time',
+              //                       style: TextStyle(
+              //                         fontFamily: 'Bios',
+              //                         fontSize: 16,
+              //                         color: const Color(0xff00e3ee),
+              //                       )),
+              //                   Text(timerText,
+              //                       style: TextStyle(
+              //                         fontFamily: 'Bios',
+              //                         fontSize: 48,
+              //                         color: const Color(0xff00e3ee),
+              //                       )),
+              //                   SizedBox(height: 64.0),
+              //                   Text('Credits in this session',
+              //                       style: TextStyle(
+              //                         fontFamily: 'Bios',
+              //                         fontSize: 16,
+              //                         color: const Color(0xff00e3ee),
+              //                       )),
+              //                   Text(
+              //                       '${(1500 * (_stopwatch.elapsedMilliseconds / 60000)).toStringAsFixed(0)}',
+              //                       style: TextStyle(
+              //                         fontFamily: 'Bios',
+              //                         fontSize: 48,
+              //                         color: const Color(0xff00e3ee),
+              //                       )),
+              //                   SizedBox(height: 64.0),
+              //                   SquareButton(
+              //                     _stopwatch.isRunning ? 'Stop' : 'Start',
+              //                     _stopwatch.isRunning
+              //                         ? () => _stop()
+              //                         : () => _start(),
+              //                   ),
+              //                   SizedBox(height: 16.0),
+              //                   CyberButton('Transfer', _credit),
+              //                   SizedBox(height: 8.0),
+              //                   SquareButton(
+              //                       'Back', () => context.navigator.back(),
+              //                       flat: true)
+              //                 ])),
+              //           ),
+              //           onPressed: null),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         )
