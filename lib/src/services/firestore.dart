@@ -9,9 +9,14 @@ class FirestoreService {
   final CollectionReference _initiativesCollection =
       Firestore.instance.collection('initiatives');
 
-  Future<bool> createInitiative(Initiative initiative) async {
+  Future<bool> createInitiative(Initiative initiative, Profile profile) async {
     try {
       final result = await _initiativesCollection.add(initiative.toJson());
+
+      await _profilesCollection.document(profile.id).setData(
+          profile.copyWith.call(units: profile.units - 120000).toJson(),
+          merge: true);
+
       await _initiativesCollection
           .document(result.documentID)
           .setData({'id': result.documentID}, merge: true);
@@ -50,13 +55,37 @@ class FirestoreService {
     }
   }
 
-  Future<bool> supportInitiative(Initiative initiative, int credits) async {
+  Future<bool> supportInitiative(
+      Initiative initiative, int credits, Profile profile) async {
     try {
-      final updatedInitiative =
-          initiative.copyWith.call(support: initiative.support + credits);
+      initiative.supporters.contains(profile.id);
+
+      final updatedInitiative = initiative.copyWith.call(
+          support: initiative.support + credits,
+          supporters: initiative.supporters.contains(profile.id)
+              ? initiative.supporters
+              : List.from(initiative.supporters)
+            ..add(profile.id));
+
+      await _profilesCollection.document(profile.id).setData(
+          profile.copyWith.call(units: profile.units - credits).toJson(),
+          merge: true);
+
       await _initiativesCollection
           .document(initiative.id)
           .setData(updatedInitiative.toJson(), merge: true);
+
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> addCredits(Profile profile, int credits) async {
+    try {
+      await _profilesCollection.document(profile.id).setData(
+          profile.copyWith.call(units: profile.units + credits).toJson(),
+          merge: true);
       return true;
     } catch (e) {
       return false;

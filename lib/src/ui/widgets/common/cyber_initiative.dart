@@ -20,7 +20,7 @@ class CyberInitiative extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                initiative.name,
+                initiative.name ?? '',
                 style: TextStyle(
                   fontFamily: 'Bios',
                   fontSize: 18,

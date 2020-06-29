@@ -1,8 +1,10 @@
 import 'package:engage/src/services/firestore.dart';
+import 'package:engage/src/ui/screens/support_initiative.dart';
 import 'package:engage/src/ui/widgets/common/cyber_initiative.dart';
 import 'package:engage/src/ui/widgets/common/cyber_panel.dart';
 import 'package:engage/src/ui/widgets/common/profile_builder.dart';
 import 'package:engage/src/ui/widgets/home/home_header.dart';
+import 'package:engage/src/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:websafe_svg/websafe_svg.dart';
@@ -55,8 +57,11 @@ class _InitiativesScreenState extends State<InitiativesScreen> {
                 initialData: [],
                 stream: value.initiativesStream(),
                 builder: (context, snapshot) => ListView.builder(
-                  itemBuilder: (context, index) =>
-                      CyberInitiative(snapshot.data[index]),
+                  itemBuilder: (context, index) => CyberInitiative(
+                    snapshot.data[index],
+                    onPressed: (initative) =>
+                        context.navigate(SupportInitiativeScreen(initative)),
+                  ),
                   itemCount: snapshot.data.length,
                   shrinkWrap: true,
                   physics: ClampingScrollPhysics(),

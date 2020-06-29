@@ -1,5 +1,6 @@
 import 'package:engage/src/utils/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 
 class HomeBase extends StatelessWidget {
   final List<Widget> children;
@@ -20,6 +21,7 @@ class HomeBase extends StatelessWidget {
           width: context.width,
           decoration: BoxDecoration(
             gradient: LinearGradient(
+              stops: [0, 0.20, 1],
               colors: [
                 Color(0xff4B1873).withOpacity(0.97),
                 Color(0xff261341).withOpacity(0.97),
@@ -29,6 +31,11 @@ class HomeBase extends StatelessWidget {
               end: Alignment.bottomCenter,
             ),
           ),
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: WebsafeSvg.asset('assets/svg/bg-decoration.svg',
+              width: context.width),
         ),
         ...children
       ],

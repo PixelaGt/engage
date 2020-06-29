@@ -11,9 +11,9 @@ class HomeHeader extends StatelessWidget {
         builder: (context, profile) => Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                WebsafeSvg.asset('assets/svg/icon-credits.svg',
+                WebsafeSvg.asset('assets/svg/icon-money.svg',
                     height: 24.0, width: 24.0),
-                SizedBox(width: 4.0),
+                SizedBox(width: 8.0),
                 Text(
                   '${profile?.units?.toString() ?? ''} credits',
                   style: TextStyle(

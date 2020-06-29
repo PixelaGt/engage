@@ -32,7 +32,9 @@ class EngageApp extends StatelessWidget {
         title: 'Flutter Demo',
         navigatorKey: _navigationService.navKey,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: Color(0xff00e3ee),
+          accentColor: Color(0xffDC31E4),
+          splashColor: Color(0xffDC31E4),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: SplashScreen(),

@@ -13,3 +13,13 @@ String nickValidator(String value) {
   if (value.isEmpty) return 'You must enter your nickname';
   return null;
 }
+
+String goalValidator(String value) {
+  if (value.isEmpty) return 'You must enter a goal';
+  return null;
+}
+
+String descriptionValidator(String value) {
+  if (value.isEmpty) return 'You must enter a description';
+  return null;
+}

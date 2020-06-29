@@ -1,7 +1,9 @@
+import 'package:engage/src/ui/screens/create_initiative.dart';
 import 'package:engage/src/ui/screens/credits.dart';
 import 'package:engage/src/ui/screens/initiatives.dart';
 import 'package:engage/src/ui/widgets/home/home_base.dart';
 import 'package:engage/src/ui/widgets/home/home_navigation.dart';
+import 'package:engage/src/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
@@ -43,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           floatingActionButton: _currentPage == 0
               ? FloatingActionButton(
-                  onPressed: () {},
+                  onPressed: () => context.navigate(CreateInitiativeScreen()),
                   mini: true,
                   child: WebsafeSvg.asset('assets/svg/icon-plus.svg',
                       height: 18.0, width: 18.0),

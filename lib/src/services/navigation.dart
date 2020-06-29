@@ -15,5 +15,5 @@ class NavigationService {
           builder: (context) => child, settings: RouteSettings()));
   }
 
-  void back(dynamic result) => _navigatorKey.currentState.pop(result);
+  void back({dynamic result}) => _navigatorKey.currentState.pop(result);
 }

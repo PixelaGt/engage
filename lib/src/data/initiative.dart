@@ -7,12 +7,12 @@ part 'initiative.g.dart';
 @freezed
 abstract class Initiative with _$Initiative {
   const factory Initiative(
-      {@Default([]) List<String> supporters,
+      {@Default(0) int support,
+      @Default([]) List<String> supporters,
       @required String description,
-      @required String name,
       @required int goal,
-      @required int support,
-      String id}) = _Initiative;
+      String id,
+      String name}) = _Initiative;
 
   factory Initiative.fromJson(Map<String, dynamic> json) =>
       _$InitiativeFromJson(json);

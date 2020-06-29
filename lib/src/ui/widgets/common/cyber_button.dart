@@ -25,7 +25,6 @@ class CyberButton extends StatelessWidget {
         onTap: onPressed,
         child: Container(
           height: 43.0,
-          width: 150,
           child: Center(
             child: Text(
               text,
