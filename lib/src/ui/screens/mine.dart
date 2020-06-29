@@ -97,7 +97,11 @@ class _MineScreenState extends State<MineScreen> {
                                       : () => _start(),
                                 ),
                                 SizedBox(height: 16.0),
-                                CyberButton('Transfer', _credit)
+                                CyberButton('Transfer', _credit),
+                                SizedBox(height: 8.0),
+                                SquareButton(
+                                    'Back', () => context.navigator.back(),
+                                    flat: true)
                               ])),
                         ),
                         onPressed: null),

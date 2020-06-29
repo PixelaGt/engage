@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class SquareButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
+  final bool flat;
 
   SquareButton(
     this.text,
     this.onPressed, {
+    this.flat = false,
     Key key,
   }) : super(key: key);
 
@@ -20,7 +22,9 @@ class SquareButton extends StatelessWidget {
           height: 43.0,
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           decoration: BoxDecoration(
-            border: Border.all(width: 1.0, color: const Color(0xff00e3ee)),
+            border: Border.all(
+                width: 1.0,
+                color: flat ? Colors.transparent : const Color(0xff00e3ee)),
             boxShadow: [],
           ),
           child: Center(

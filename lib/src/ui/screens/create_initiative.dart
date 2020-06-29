@@ -121,7 +121,11 @@ class _CreateInitiativeScreenState extends State<CreateInitiativeScreen> {
                                 ),
                                 SizedBox(height: 24.0),
                                 SquareButton(
-                                    'Create'.toUpperCase(), _createInitiative)
+                                    'Create'.toUpperCase(), _createInitiative),
+                                SizedBox(height: 8.0),
+                                SquareButton(
+                                    'Back', () => context.navigator.back(),
+                                    flat: true)
                               ],
                             ),
                           ),

@@ -27,7 +27,7 @@ class _InitiativesScreenState extends State<InitiativesScreen> {
         padding: EdgeInsets.zero,
         children: [
           WebsafeSvg.asset('assets/svg/header-decoration.svg',
-              fit: BoxFit.fill, height: 80.0),
+              fit: BoxFit.cover, height: 80.0, width: context.width),
           SizedBox(height: 24.0),
           ListView(
             shrinkWrap: true,

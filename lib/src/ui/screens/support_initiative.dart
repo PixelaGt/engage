@@ -119,7 +119,14 @@ class _SupportInitiativeScreenState extends State<SupportInitiativeScreen> {
                                   ))
                       ],
                     ),
-                    SquareButton('Support'.toUpperCase(), _support)
+                    Column(
+                      children: [
+                        SquareButton('Support'.toUpperCase(), _support),
+                        SizedBox(height: 8.0),
+                        SquareButton('Back', () => context.navigator.back(),
+                            flat: true)
+                      ],
+                    ),
                   ],
                 )),
           )
