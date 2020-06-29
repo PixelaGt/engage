@@ -40,7 +40,7 @@ class LoginForm extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CyberButton('Anonymous', onAnonymous),
+                    CyberButton('get in', onAnonymous),
                     SquareIconButton('google', onGoogle)
                   ],
                 ),
