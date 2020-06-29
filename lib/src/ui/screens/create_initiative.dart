@@ -1,5 +1,6 @@
 import 'package:engage/src/data/initiative.dart';
 import 'package:engage/src/ui/widgets/common/cyber_decoration.dart';
+import 'package:engage/src/ui/widgets/common/cyber_things.dart';
 import 'package:engage/src/ui/widgets/common/square_button.dart';
 import 'package:engage/src/ui/widgets/home/home_base.dart';
 import 'package:engage/src/ui/widgets/register/register_form.dart';
@@ -27,87 +28,95 @@ class _CreateInitiativeScreenState extends State<CreateInitiativeScreen> {
       Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             WebsafeSvg.asset('assets/svg/header-decoration.svg',
-                fit: BoxFit.fill, width: context.width),
-            SizedBox(height: 48.0),
+                fit: BoxFit.fill, height: 80.0),
+            SizedBox(height: 24.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 32.0),
+              child: CyberThings(),
+            ),
+            SizedBox(height: 24.0),
             Expanded(
                 child: Container(
               child: Stack(
                 children: [
                   CyberDecoration(),
                   Positioned.fill(
-                      child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Create initiative',
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Create initiative',
+                                style: TextStyle(
+                                    color: Color(0xff00e3ee),
+                                    fontFamily: 'Bios',
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 32.0)),
+                            SizedBox(height: 4.0),
+                            Text(
+                              'This will cost you 120,000 credits',
                               style: TextStyle(
-                                  color: Color(0xff00e3ee),
-                                  fontFamily: 'Bios',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 32.0)),
-                          SizedBox(height: 4.0),
-                          Text(
-                            'This will cost you 120,000 credits',
-                            style: TextStyle(
-                              fontFamily: 'Bios',
-                              fontSize: 14,
-                              color: const Color(0xff00e3ee),
+                                fontFamily: 'Bios',
+                                fontSize: 14,
+                                color: const Color(0xff00e3ee),
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 24.0),
-                          Text(
-                            'What\'s your goal? (in credits)',
-                            style: TextStyle(
-                              fontFamily: 'Bios',
-                              fontSize: 12,
-                              color: const Color(0xff00e3ee),
+                            SizedBox(height: 24.0),
+                            Text(
+                              'What\'s your goal? (in credits)',
+                              style: TextStyle(
+                                fontFamily: 'Bios',
+                                fontSize: 12,
+                                color: const Color(0xff00e3ee),
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 4.0),
-                          TextFormField(
-                            decoration: cyberFieldDecoration,
-                            keyboardType: TextInputType.number,
-                            onChanged: (value) => setState(() => _goal = value),
-                            style: TextStyle(
-                              color: Color(0xffDC31E4),
-                              fontFamily: 'Bios',
+                            SizedBox(height: 4.0),
+                            TextFormField(
+                              decoration: cyberFieldDecoration,
+                              keyboardType: TextInputType.number,
+                              onChanged: (value) =>
+                                  setState(() => _goal = value),
+                              style: TextStyle(
+                                color: Color(0xffDC31E4),
+                                fontFamily: 'Bios',
+                              ),
+                              validator: goalValidator,
                             ),
-                            validator: goalValidator,
-                          ),
-                          SizedBox(height: 24.0),
-                          Text(
-                            'Write something to attract people',
-                            style: TextStyle(
-                              fontFamily: 'Bios',
-                              fontSize: 12,
-                              color: const Color(0xff00e3ee),
+                            SizedBox(height: 24.0),
+                            Text(
+                              'Write something to attract people',
+                              style: TextStyle(
+                                fontFamily: 'Bios',
+                                fontSize: 12,
+                                color: const Color(0xff00e3ee),
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 4.0),
-                          TextFormField(
-                            maxLines: 6,
-                            decoration: cyberFieldDecoration,
-                            onChanged: (value) =>
-                                setState(() => _description = value),
-                            style: TextStyle(
-                              color: Color(0xffDC31E4),
-                              fontFamily: 'Bios',
+                            SizedBox(height: 4.0),
+                            TextFormField(
+                              maxLines: 6,
+                              decoration: cyberFieldDecoration,
+                              onChanged: (value) =>
+                                  setState(() => _description = value),
+                              style: TextStyle(
+                                color: Color(0xffDC31E4),
+                                fontFamily: 'Bios',
+                              ),
+                              validator: descriptionValidator,
                             ),
-                            validator: descriptionValidator,
-                          ),
-                          SizedBox(height: 24.0),
-                          SquareButton(
-                              'Create'.toUpperCase(), _createInitiative)
-                        ],
+                            SizedBox(height: 24.0),
+                            SquareButton(
+                                'Create'.toUpperCase(), _createInitiative)
+                          ],
+                        ),
                       ),
                     ),
-                  ))
+                  )
                 ],
               ),
             ))
@@ -119,11 +128,13 @@ class _CreateInitiativeScreenState extends State<CreateInitiativeScreen> {
 
   void _createInitiative() async {
     if (_formKey.currentState.validate()) {
-      final initiative =
-          Initiative(description: _description, goal: int.parse(_goal));
       final profile = await context.store
           .getProfile((await context.auth.currentUser()).uid);
       if (profile.units >= 120000) {
+        final initiative = Initiative(
+            description: _description,
+            goal: int.parse(_goal),
+            ownerId: profile.id);
         final result =
             await context.store.createInitiative(initiative, profile);
         if (result) {

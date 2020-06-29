@@ -14,6 +14,7 @@ _$_Initiative _$_$_InitiativeFromJson(Map<String, dynamic> json) {
     supporters:
         (json['supporters'] as List)?.map((e) => e as String)?.toList() ?? [],
     description: json['description'] as String,
+    ownerId: json['ownerId'] as String,
     goal: json['goal'] as int,
     id: json['id'] as String,
     name: json['name'] as String,
@@ -25,6 +26,7 @@ Map<String, dynamic> _$_$_InitiativeToJson(_$_Initiative instance) =>
       'support': instance.support,
       'supporters': instance.supporters,
       'description': instance.description,
+      'ownerId': instance.ownerId,
       'goal': instance.goal,
       'id': instance.id,
       'name': instance.name,

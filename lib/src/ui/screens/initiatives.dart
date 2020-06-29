@@ -2,6 +2,7 @@ import 'package:engage/src/services/firestore.dart';
 import 'package:engage/src/ui/screens/support_initiative.dart';
 import 'package:engage/src/ui/widgets/common/cyber_initiative.dart';
 import 'package:engage/src/ui/widgets/common/cyber_panel.dart';
+import 'package:engage/src/ui/widgets/common/cyber_things.dart';
 import 'package:engage/src/ui/widgets/common/profile_builder.dart';
 import 'package:engage/src/ui/widgets/home/home_header.dart';
 import 'package:engage/src/utils/extensions.dart';
@@ -22,8 +23,9 @@ class _InitiativesScreenState extends State<InitiativesScreen> {
     return ListView(
       padding: EdgeInsets.zero,
       children: [
-        WebsafeSvg.asset('assets/svg/header-decoration.svg', fit: BoxFit.fill),
-        SizedBox(height: 16.0),
+        WebsafeSvg.asset('assets/svg/header-decoration.svg',
+            fit: BoxFit.fill, height: 80.0),
+        SizedBox(height: 24.0),
         ListView(
           shrinkWrap: true,
           physics: ClampingScrollPhysics(),
@@ -32,7 +34,7 @@ class _InitiativesScreenState extends State<InitiativesScreen> {
             HomeHeader(),
             SizedBox(height: 32.0),
             Text(
-              'Now, you are know as:',
+              'Now, you are known as:',
               style: TextStyle(
                 fontFamily: 'Bios',
                 fontSize: 16,
@@ -43,7 +45,9 @@ class _InitiativesScreenState extends State<InitiativesScreen> {
             ProfileBuilder(
                 builder: (context, profile) =>
                     CyberPanel(profile?.displayName ?? '')),
-            SizedBox(height: 32.0),
+            SizedBox(height: 16.0),
+            CyberThings(),
+            SizedBox(height: 16.0),
             Text('Initiatives',
                 style: TextStyle(
                   fontFamily: 'Bios',
@@ -56,16 +60,18 @@ class _InitiativesScreenState extends State<InitiativesScreen> {
               builder: (context, value, child) => StreamBuilder(
                 initialData: [],
                 stream: value.initiativesStream(),
-                builder: (context, snapshot) => ListView.builder(
-                  itemBuilder: (context, index) => CyberInitiative(
-                    snapshot.data[index],
-                    onPressed: (initative) =>
-                        context.navigate(SupportInitiativeScreen(initative)),
-                  ),
-                  itemCount: snapshot.data.length,
-                  shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
-                ),
+                builder: (context, snapshot) => snapshot.data != null
+                    ? ListView.builder(
+                        itemBuilder: (context, index) => CyberInitiative(
+                          snapshot.data[index],
+                          onPressed: (initative) => context
+                              .navigate(SupportInitiativeScreen(initative)),
+                        ),
+                        itemCount: snapshot.data.length,
+                        shrinkWrap: true,
+                        physics: ClampingScrollPhysics(),
+                      )
+                    : Container(),
               ),
             ),
           ],

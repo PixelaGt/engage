@@ -1,6 +1,7 @@
 import 'package:engage/src/services/firestore.dart';
 import 'package:engage/src/ui/screens/mine.dart';
-import 'package:engage/src/ui/widgets/common/cyber_initiative.dart';
+import 'package:engage/src/ui/widgets/common/cyber_things.dart';
+import 'package:engage/src/ui/widgets/common/cyber_transfer.dart';
 import 'package:engage/src/ui/widgets/common/profile_builder.dart';
 import 'package:engage/src/ui/widgets/common/square_button.dart';
 import 'package:engage/src/utils/extensions.dart';
@@ -21,8 +22,9 @@ class _CreditsScreenState extends State<CreditsScreen> {
     return ListView(
       padding: EdgeInsets.zero,
       children: [
-        WebsafeSvg.asset('assets/svg/header-decoration.svg', fit: BoxFit.fill),
-        SizedBox(height: 16.0),
+        WebsafeSvg.asset('assets/svg/header-decoration.svg',
+            fit: BoxFit.fill, height: 80.0),
+        SizedBox(height: 24.0),
         ListView(
           shrinkWrap: true,
           physics: ClampingScrollPhysics(),
@@ -53,7 +55,9 @@ class _CreditsScreenState extends State<CreditsScreen> {
             ),
             SizedBox(height: 16.0),
             SquareButton('get more', () => context.navigate(MineScreen())),
-            SizedBox(height: 32.0),
+            SizedBox(height: 16.0),
+            CyberThings(),
+            SizedBox(height: 16.0),
             Text('Transfers',
                 style: TextStyle(
                   fontFamily: 'Bios',
@@ -69,14 +73,20 @@ class _CreditsScreenState extends State<CreditsScreen> {
                       initialData: [],
                       stream: context
                           .watch<FirestoreService>()
-                          .supportedInitiatives(profile.id),
-                      builder: (context, snapshot) => ListView.builder(
-                        itemBuilder: (context, index) =>
-                            CyberInitiative(snapshot.data[index]),
-                        itemCount: snapshot.data.length,
-                        shrinkWrap: true,
-                        physics: ClampingScrollPhysics(),
-                      ),
+                          .getTransfers(profile.id),
+                      builder: (context, snapshot) {
+                        if (snapshot.data == null) {
+                          return Container();
+                        } else {
+                          return ListView.builder(
+                            itemBuilder: (context, index) =>
+                                CyberTransfer(snapshot.data[index]),
+                            itemCount: snapshot.data.length,
+                            shrinkWrap: true,
+                            physics: ClampingScrollPhysics(),
+                          );
+                        }
+                      },
                     ),
             ),
           ],

@@ -10,6 +10,7 @@ abstract class Initiative with _$Initiative {
       {@Default(0) int support,
       @Default([]) List<String> supporters,
       @required String description,
+      @required String ownerId,
       @required int goal,
       String id,
       String name}) = _Initiative;

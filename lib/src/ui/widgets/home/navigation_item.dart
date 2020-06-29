@@ -5,8 +5,10 @@ class NavigationItem extends StatelessWidget {
   final String item;
   final String text;
   final VoidCallback onPressed;
+  final bool isSelected;
 
-  const NavigationItem(this.item, this.text, {this.onPressed, Key key})
+  const NavigationItem(this.item, this.text, this.isSelected,
+      {this.onPressed, Key key})
       : super(key: key);
 
   @override
@@ -25,7 +27,9 @@ class NavigationItem extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'Bios',
                   fontSize: 10.0,
-                  color: const Color(0xff00e3ee),
+                  color: isSelected
+                      ? const Color(0xffDC31E4)
+                      : const Color(0xff00e3ee),
                 ),
               ),
             ],

@@ -38,11 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
             pageSnapping: false,
             physics: NeverScrollableScrollPhysics(),
           ),
-          bottomNavigationBar: HomeNavigation(
-            () => changePage(1),
-            () => changePage(2),
-            () => changePage(0),
-          ),
+          bottomNavigationBar: HomeNavigation(() => changePage(1),
+              () => changePage(2), () => changePage(0), _currentPage),
           floatingActionButton: _currentPage == 0
               ? FloatingActionButton(
                   onPressed: () => context.navigate(CreateInitiativeScreen()),

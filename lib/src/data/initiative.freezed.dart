@@ -19,6 +19,7 @@ class _$InitiativeTearOff {
       {int support = 0,
       List<String> supporters = const [],
       @required String description,
+      @required String ownerId,
       @required int goal,
       String id,
       String name}) {
@@ -26,6 +27,7 @@ class _$InitiativeTearOff {
       support: support,
       supporters: supporters,
       description: description,
+      ownerId: ownerId,
       goal: goal,
       id: id,
       name: name,
@@ -40,6 +42,7 @@ mixin _$Initiative {
   int get support;
   List<String> get supporters;
   String get description;
+  String get ownerId;
   int get goal;
   String get id;
   String get name;
@@ -56,6 +59,7 @@ abstract class $InitiativeCopyWith<$Res> {
       {int support,
       List<String> supporters,
       String description,
+      String ownerId,
       int goal,
       String id,
       String name});
@@ -73,6 +77,7 @@ class _$InitiativeCopyWithImpl<$Res> implements $InitiativeCopyWith<$Res> {
     Object support = freezed,
     Object supporters = freezed,
     Object description = freezed,
+    Object ownerId = freezed,
     Object goal = freezed,
     Object id = freezed,
     Object name = freezed,
@@ -84,6 +89,7 @@ class _$InitiativeCopyWithImpl<$Res> implements $InitiativeCopyWith<$Res> {
           : supporters as List<String>,
       description:
           description == freezed ? _value.description : description as String,
+      ownerId: ownerId == freezed ? _value.ownerId : ownerId as String,
       goal: goal == freezed ? _value.goal : goal as int,
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
@@ -100,6 +106,7 @@ abstract class _$InitiativeCopyWith<$Res> implements $InitiativeCopyWith<$Res> {
       {int support,
       List<String> supporters,
       String description,
+      String ownerId,
       int goal,
       String id,
       String name});
@@ -119,6 +126,7 @@ class __$InitiativeCopyWithImpl<$Res> extends _$InitiativeCopyWithImpl<$Res>
     Object support = freezed,
     Object supporters = freezed,
     Object description = freezed,
+    Object ownerId = freezed,
     Object goal = freezed,
     Object id = freezed,
     Object name = freezed,
@@ -130,6 +138,7 @@ class __$InitiativeCopyWithImpl<$Res> extends _$InitiativeCopyWithImpl<$Res>
           : supporters as List<String>,
       description:
           description == freezed ? _value.description : description as String,
+      ownerId: ownerId == freezed ? _value.ownerId : ownerId as String,
       goal: goal == freezed ? _value.goal : goal as int,
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
@@ -143,12 +152,14 @@ class _$_Initiative with DiagnosticableTreeMixin implements _Initiative {
       {this.support = 0,
       this.supporters = const [],
       @required this.description,
+      @required this.ownerId,
       @required this.goal,
       this.id,
       this.name})
       : assert(support != null),
         assert(supporters != null),
         assert(description != null),
+        assert(ownerId != null),
         assert(goal != null);
 
   factory _$_Initiative.fromJson(Map<String, dynamic> json) =>
@@ -163,6 +174,8 @@ class _$_Initiative with DiagnosticableTreeMixin implements _Initiative {
   @override
   final String description;
   @override
+  final String ownerId;
+  @override
   final int goal;
   @override
   final String id;
@@ -171,7 +184,7 @@ class _$_Initiative with DiagnosticableTreeMixin implements _Initiative {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Initiative(support: $support, supporters: $supporters, description: $description, goal: $goal, id: $id, name: $name)';
+    return 'Initiative(support: $support, supporters: $supporters, description: $description, ownerId: $ownerId, goal: $goal, id: $id, name: $name)';
   }
 
   @override
@@ -182,6 +195,7 @@ class _$_Initiative with DiagnosticableTreeMixin implements _Initiative {
       ..add(DiagnosticsProperty('support', support))
       ..add(DiagnosticsProperty('supporters', supporters))
       ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('ownerId', ownerId))
       ..add(DiagnosticsProperty('goal', goal))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name));
@@ -200,6 +214,9 @@ class _$_Initiative with DiagnosticableTreeMixin implements _Initiative {
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)) &&
+            (identical(other.ownerId, ownerId) ||
+                const DeepCollectionEquality()
+                    .equals(other.ownerId, ownerId)) &&
             (identical(other.goal, goal) ||
                 const DeepCollectionEquality().equals(other.goal, goal)) &&
             (identical(other.id, id) ||
@@ -214,6 +231,7 @@ class _$_Initiative with DiagnosticableTreeMixin implements _Initiative {
       const DeepCollectionEquality().hash(support) ^
       const DeepCollectionEquality().hash(supporters) ^
       const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(ownerId) ^
       const DeepCollectionEquality().hash(goal) ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name);
@@ -233,6 +251,7 @@ abstract class _Initiative implements Initiative {
       {int support,
       List<String> supporters,
       @required String description,
+      @required String ownerId,
       @required int goal,
       String id,
       String name}) = _$_Initiative;
@@ -246,6 +265,8 @@ abstract class _Initiative implements Initiative {
   List<String> get supporters;
   @override
   String get description;
+  @override
+  String get ownerId;
   @override
   int get goal;
   @override

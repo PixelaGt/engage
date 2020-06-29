@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:engage/src/data/initiative.dart';
 import 'package:engage/src/data/profile.dart';
+import 'package:engage/src/data/transfer.dart';
 
 class FirestoreService {
   final CollectionReference _profilesCollection =
@@ -8,6 +9,9 @@ class FirestoreService {
 
   final CollectionReference _initiativesCollection =
       Firestore.instance.collection('initiatives');
+
+  final CollectionReference _transfersCollection =
+      Firestore.instance.collection('transfers');
 
   Future<bool> createInitiative(Initiative initiative, Profile profile) async {
     try {
@@ -75,6 +79,13 @@ class FirestoreService {
           .document(initiative.id)
           .setData(updatedInitiative.toJson(), merge: true);
 
+      await _transfersCollection.add(Transfer(
+              credits: credits,
+              initiativeId: initiative.id,
+              initiativeName: initiative.name ?? '',
+              profileId: profile.id)
+          .toJson());
+
       return true;
     } catch (e) {
       return false;
@@ -92,11 +103,20 @@ class FirestoreService {
     }
   }
 
-  Stream<List<Initiative>> supportedInitiatives(String id) =>
-      _initiativesCollection.snapshots().map((snapshot) => snapshot.documents
-          .map((e) => Initiative.fromJson(e.data))
-          .where((element) => element.supporters.contains(id))
-          .toList());
+  Stream<List<Initiative>> supportedInitiatives(
+          String id) =>
+      _initiativesCollection
+          .where('supporters', arrayContains: id)
+          .snapshots()
+          .map((snapshots) => snapshots.documents
+              .map((e) => Initiative.fromJson(e.data))
+              .toList());
+
+  Stream<List<Transfer>> getTransfers(String id) => _transfersCollection
+      .where('profileId', isEqualTo: id)
+      .snapshots()
+      .map((snapshot) =>
+          snapshot.documents.map((e) => Transfer.fromJson(e.data)).toList());
 
   Stream<List<Initiative>> initiativesStream() =>
       _initiativesCollection.snapshots().map((result) =>

@@ -43,56 +43,57 @@ class _MineScreenState extends State<MineScreen> {
             WebsafeSvg.asset('assets/svg/header-decoration.svg',
                 fit: BoxFit.fill, width: context.width),
             Expanded(
-                child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Center(
-                child: CyberContainer(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 40.0),
-                      child: Column(
-                        children: [
-                          Text('Elapsed time',
-                              style: TextStyle(
-                                fontFamily: 'Bios',
-                                fontSize: 16,
-                                color: const Color(0xff00e3ee),
-                              )),
-                          Text(timerText,
-                              style: TextStyle(
-                                fontFamily: 'Bios',
-                                fontSize: 48,
-                                color: const Color(0xff00e3ee),
-                              )),
-                          SizedBox(height: 64.0),
-                          Text('Credits in this session',
-                              style: TextStyle(
-                                fontFamily: 'Bios',
-                                fontSize: 16,
-                                color: const Color(0xff00e3ee),
-                              )),
-                          Text(
-                              '${(1500 * (_stopwatch.elapsedMilliseconds / 60000)).toStringAsFixed(0)}',
-                              style: TextStyle(
-                                fontFamily: 'Bios',
-                                fontSize: 48,
-                                color: const Color(0xff00e3ee),
-                              )),
-                          SizedBox(height: 64.0),
-                          SquareButton(
-                            _stopwatch.isRunning ? 'Stop' : 'Start',
-                            _stopwatch.isRunning
-                                ? () => _stop()
-                                : () => _start(),
-                          ),
-                          SizedBox(height: 16.0),
-                          CyberButton('Credit', _credit)
-                        ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Center(
+                  child: CyberContainer(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 128.0),
+                        child: Column(
+                          children: [
+                            Text('Elapsed time',
+                                style: TextStyle(
+                                  fontFamily: 'Bios',
+                                  fontSize: 16,
+                                  color: const Color(0xff00e3ee),
+                                )),
+                            Text(timerText,
+                                style: TextStyle(
+                                  fontFamily: 'Bios',
+                                  fontSize: 48,
+                                  color: const Color(0xff00e3ee),
+                                )),
+                            SizedBox(height: 64.0),
+                            Text('Credits in this session',
+                                style: TextStyle(
+                                  fontFamily: 'Bios',
+                                  fontSize: 16,
+                                  color: const Color(0xff00e3ee),
+                                )),
+                            Text(
+                                '${(1500 * (_stopwatch.elapsedMilliseconds / 60000)).toStringAsFixed(0)}',
+                                style: TextStyle(
+                                  fontFamily: 'Bios',
+                                  fontSize: 48,
+                                  color: const Color(0xff00e3ee),
+                                )),
+                            SizedBox(height: 64.0),
+                            SquareButton(
+                              _stopwatch.isRunning ? 'Stop' : 'Start',
+                              _stopwatch.isRunning
+                                  ? () => _stop()
+                                  : () => _start(),
+                            ),
+                            SizedBox(height: 16.0),
+                            CyberButton('Transfer', _credit)
+                          ],
+                        ),
                       ),
-                    ),
-                    onPressed: null),
+                      onPressed: null),
+                ),
               ),
-            ))
+            ),
           ],
         ),
       )
