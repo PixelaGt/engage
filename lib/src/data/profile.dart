@@ -20,6 +20,6 @@ abstract class Profile with _$Profile {
 
 Profile random({String id}) => Profile(
     birthday: DateTime.now().toIso8601String(),
-    id: id ?? 'idtemporal',
-    nickname: 'nicktemporal',
-    realName: 'nametemporal');
+    id: id ?? 'idtemp',
+    nickname: 'nicktemp',
+    realName: 'nametemp');

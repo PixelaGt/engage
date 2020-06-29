@@ -70,7 +70,9 @@ class _LoginScreenState extends State<LoginScreen> {
       context.loading();
       final user = await context.auth.loginAnonymously();
       if (user != null) {
-        context.updateProfile(random());
+        final profile = random(id: user.uid);
+        await context.store.createProfile(profile);
+        context.updateProfile(profile);
         context.hideLoading();
         context.navigate(HomeScreen(), replace: true);
       }
