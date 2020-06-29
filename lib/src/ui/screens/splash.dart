@@ -4,6 +4,7 @@ import 'package:engage/src/ui/screens/home.dart';
 import 'package:engage/src/ui/screens/login.dart';
 import 'package:engage/src/ui/widgets/home/home_base.dart';
 import 'package:engage/src/utils/extensions.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
@@ -29,9 +30,15 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Stack(
           children: [
             Align(
-              alignment: Alignment.center,
-              child: Text('Hola'),
-            ),
+                alignment: Alignment.center,
+                child: Container(
+                  width: context.width * 0.4,
+                  height: context.width * 0.4,
+                  child: FlareActor("assets/flare/Engage.flr",
+                      alignment: Alignment.center,
+                      fit: BoxFit.contain,
+                      animation: "diffused"),
+                )),
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
@@ -50,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _setup() async {
-    Timer(Duration(seconds: 2), () async {
+    Timer(Duration(seconds: 3), () async {
       if (await context.auth.isUserLoggedIn()) {
         context.navigator.navigateTo(HomeScreen(), replace: true);
       } else {

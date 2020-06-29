@@ -1,11 +1,14 @@
-# engage
+# Engage
 
 In 2020 comunities are using blockchain plattforms to gain value from its activities. In 2077 someone might exploit a glitch to take it all.
 
 This is our #Hack20 project, we have so much fun doing it.
 
-<img src="https://raw.githubusercontent.com/PixelaGt/engage/develop/images/screen_first.png" width="350">
-<img src="https://raw.githubusercontent.com/PixelaGt/engage/develop/images/screen_first.png" width="350">
+<p float="left">
+<img src="https://raw.githubusercontent.com/PixelaGt/engage/develop/images/screen_first.png" width="150">
+<img  src="https://raw.githubusercontent.com/PixelaGt/engage/develop/images/screen_first.png" width="150">
+</p>
+
 
 ## Notes
 

@@ -7,6 +7,7 @@ import 'package:engage/src/ui/widgets/login/login_form.dart';
 import 'package:engage/src/ui/widgets/login/login_header.dart';
 import 'package:engage/src/utils/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key}) : super(key: key);
@@ -21,6 +22,11 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: LoginBase(
         [
+          Align(
+            alignment: Alignment.center,
+            child: WebsafeSvg.asset('assets/svg/bg-decoration.svg',
+                width: context.width),
+          ),
           Column(
             children: [
               Expanded(

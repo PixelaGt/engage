@@ -15,6 +15,7 @@ dependencies:
   cloud_firestore: ^0.13.7
   datetime_picker_formfield: ^1.0.0
   firebase_auth: ^0.16.1
+  flare_flutter: ^2.0.4
   flutter_spinkit: "^4.1.2"
   flutter_staggered_animations: ^0.1.2
   freezed_annotation: ^0.11.0
@@ -41,6 +42,7 @@ flutter:
   assets:
     - assets/images/
     - assets/svg/
+    - assets/flare/
   fonts:
     - family: Bios
       fonts:
