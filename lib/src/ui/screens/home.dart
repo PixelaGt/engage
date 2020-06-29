@@ -41,18 +41,23 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           bottomNavigationBar: HomeNavigation(() => changePage(1),
               () => changePage(2), () => changePage(0), _currentPage),
-          floatingActionButton: _currentPage == 0
-              ? FloatingActionButton(
-                  onPressed: () => context.navigate(CreateInitiativeScreen(),
-                      type: SharedAxisTransitionType.vertical),
-                  mini: true,
-                  child: WebsafeSvg.asset('assets/svg/icon-plus.svg',
-                      height: 18.0, width: 18.0),
-                  backgroundColor: Color(0xff00e3ee).withOpacity(0.25),
-                  shape:
-                      CircleBorder(side: BorderSide(color: Color(0xff00e3ee))),
-                )
-              : Container())
+          floatingActionButton: IgnorePointer(
+            ignoring: _currentPage != 0,
+            child: AnimatedOpacity(
+              opacity: _currentPage == 0 ? 1.0 : 0.0,
+              duration: Duration(milliseconds: 350),
+              curve: Curves.easeInOut,
+              child: FloatingActionButton(
+                onPressed: () => context.navigate(CreateInitiativeScreen(),
+                    type: SharedAxisTransitionType.vertical),
+                mini: true,
+                child: WebsafeSvg.asset('assets/svg/icon-plus.svg',
+                    height: 18.0, width: 18.0),
+                backgroundColor: Color(0xff00e3ee).withOpacity(0.25),
+                shape: CircleBorder(side: BorderSide(color: Color(0xff00e3ee))),
+              ),
+            ),
+          ))
     ]);
   }
 
