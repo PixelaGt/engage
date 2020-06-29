@@ -57,6 +57,8 @@ class _LoginScreenState extends State<LoginScreen> {
           context.navigate(RegisterScreen(user.uid),
               replace: true, type: SharedAxisTransitionType.horizontal);
         }
+      } else {
+        context.hideLoading();
       }
     } catch (e) {
       context.hideLoading();

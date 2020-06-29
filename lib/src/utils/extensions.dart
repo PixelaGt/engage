@@ -26,5 +26,6 @@ extension ScreenExtension on BuildContext {
   double get width => MediaQuery.of(this).size.width;
 
   void loading() => Provider.of<Loader>(this, listen: false).showLoader(this);
-  void hideLoading() => Provider.of<Loader>(this, listen: false).hideLoader();
+  void hideLoading() =>
+      Provider.of<Loader>(this, listen: false).hideLoader(this);
 }

@@ -5,12 +5,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Loader {
   bool _isLoading = false;
-  BuildContext _context;
 
   void showLoader(BuildContext context) {
     if (!_isLoading) {
       _isLoading = true;
-      _context = context;
       showModal(
         context: context,
         builder: (context) => Material(
@@ -28,9 +26,9 @@ class Loader {
     }
   }
 
-  void hideLoader() {
+  void hideLoader(BuildContext context) {
     if (_isLoading) {
-      Navigator.of(_context).pop();
+      Navigator.of(context).pop();
       _isLoading = false;
     }
   }

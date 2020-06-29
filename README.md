@@ -12,10 +12,12 @@ This is our #Hack20 project, we have so much fun doing it.
 
 ## Notes
 
+### Credentials
+`google-services.json` and `firebase.js` are uncommited by security reasons.
+
 ### Web
 Web is working with a couple of issues:
 - Back button on some screens is failing, maybe a flutter_web issue.
-- We are using some SVG that maybe there are not in the right place.
 
 ### iOS
-Sadly, we didn't have an Apple device to develop and test, but making the necessary platform updates, most of all Firebase related, will be running without problems.
+Sadly, we didn't have an Apple device to develop and test, but making the necessary platform updates, most of all Firebase related, will be running without problems, sorry.

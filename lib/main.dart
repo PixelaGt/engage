@@ -34,6 +34,7 @@ class EngageApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Engage',
         navigatorKey: _navigationService.navKey,
         theme: ThemeData(

@@ -131,6 +131,9 @@ class FirestoreService {
               .map((e) => Initiative.fromJson(e.data))
               .toList());
 
+  Stream<int> initiativesCount() =>
+      initiativesStream().map((event) => event.length);
+
   Stream<List<Transfer>> getTransfers(String id) => _transfersCollection
       .where('profileId', isEqualTo: id)
       .snapshots()

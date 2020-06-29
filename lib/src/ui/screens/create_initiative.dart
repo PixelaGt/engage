@@ -6,6 +6,7 @@ import 'package:engage/src/ui/widgets/register/register_form.dart';
 import 'package:engage/src/utils/extensions.dart';
 import 'package:engage/src/utils/validators.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
@@ -89,6 +90,9 @@ class _CreateInitiativeScreenState extends State<CreateInitiativeScreen> {
                                 TextFormField(
                                   decoration: cyberFieldDecoration,
                                   keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    WhitelistingTextInputFormatter.digitsOnly
+                                  ],
                                   onChanged: (value) =>
                                       setState(() => _goal = value),
                                   style: TextStyle(
@@ -143,24 +147,30 @@ class _CreateInitiativeScreenState extends State<CreateInitiativeScreen> {
 
   void _createInitiative() async {
     context.loading();
-    if (_formKey.currentState.validate()) {
-      final profile = await context.store
-          .getProfile((await context.auth.currentUser()).uid);
-      if (profile.units >= 120000) {
-        final initiative = Initiative(
-            description: _description,
-            goal: int.parse(_goal),
-            ownerId: profile.id);
-        final result =
-            await context.store.createInitiative(initiative, profile);
-        if (result) {
-          context.navigator.back();
+    try {
+      if (_formKey.currentState.validate()) {
+        final profile = await context.store
+            .getProfile((await context.auth.currentUser()).uid);
+        if (profile.units >= 120000) {
+          final initiative = Initiative(
+              description: _description,
+              goal: int.parse(_goal),
+              ownerId: profile.id);
+          final result =
+              await context.store.createInitiative(initiative, profile);
+          if (result) {
+            context.hideLoading();
+            context.navigator.back();
+          } else {
+            context.hideLoading();
+          }
         } else {
           context.hideLoading();
         }
-      } else {
-        context.hideLoading();
       }
+    } catch (e) {
+      context.hideLoading();
+      print(e);
     }
   }
 }

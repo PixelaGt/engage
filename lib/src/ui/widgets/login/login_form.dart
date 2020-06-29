@@ -1,7 +1,9 @@
+import 'package:engage/src/services/firestore.dart';
 import 'package:engage/src/ui/widgets/common/cyber_button.dart';
 import 'package:engage/src/ui/widgets/common/cyber_decoration.dart';
 import 'package:engage/src/ui/widgets/common/square_icon_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginForm extends StatelessWidget {
   final VoidCallback onAnonymous;
@@ -29,13 +31,18 @@ class LoginForm extends StatelessWidget {
                       fontWeight: FontWeight.normal,
                     )),
                 SizedBox(height: 16.0),
-                Text('300 intiatives created, support your people.',
-                    style: TextStyle(
-                      fontFamily: 'Bios',
-                      fontSize: 14,
-                      color: const Color(0xff00e3ee),
-                      fontWeight: FontWeight.normal,
-                    )),
+                StreamBuilder(
+                    initialData: 0,
+                    stream:
+                        context.watch<FirestoreService>().initiativesCount(),
+                    builder: (context, snapshot) => Text(
+                        '${snapshot.data} intiatives created, support your people.',
+                        style: TextStyle(
+                          fontFamily: 'Bios',
+                          fontSize: 14,
+                          color: const Color(0xff00e3ee),
+                          fontWeight: FontWeight.normal,
+                        ))),
                 SizedBox(height: 16.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

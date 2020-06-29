@@ -17,9 +17,11 @@ class LoginHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: context.width * 0.30,
-            height: context.width * 0.30,
+            width: context.height * 0.4,
+            height: context.height * 0.3,
             child: FlareActor("assets/flare/Engage.flr",
+                sizeFromArtboard: false,
+                shouldClip: true,
                 alignment: Alignment.center,
                 fit: BoxFit.contain,
                 animation: "diffused"),
