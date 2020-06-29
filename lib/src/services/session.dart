@@ -4,8 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn(
-      scopes: ['email', 'https://www.googleapis.com/auth/contacts.readonly']);
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
 
   Profile _currentProfile;
 
