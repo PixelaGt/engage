@@ -4,6 +4,8 @@ In 2020 comunities are using blockchain plattforms to gain value from its activi
 
 This is our #Hack20 project, we have so much fun doing it.
 
+[Check it out on web](https://engage-6c5e2.web.app/) or you can [download the APK](https://github.com/PixelaGt/engage/blob/master/apk/app-release.apk?raw=true).
+
 <p float="left">
 <img src="https://raw.githubusercontent.com/PixelaGt/engage/develop/images/screen_first.png" width="150">
 <img  src="https://raw.githubusercontent.com/PixelaGt/engage/develop/images/screen_first.png" width="150">
