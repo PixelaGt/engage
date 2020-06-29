@@ -13,7 +13,7 @@ This is our #Hack20 project, we have so much fun doing it.
 ## Notes
 
 ### Credentials
-`google-services.json` and `firebase.js` are uncommited by security reasons.
+`google-services.json` and `firebase.js` are uncommitted for security reasons.
 
 ### Web
 Web is working with a couple of issues:
